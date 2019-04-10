@@ -13,24 +13,37 @@
 				margin:50px;
 
 				background-color:#CCCCCC;
+				position: relative;
+			}
+
+			#first, #second {
+				position: absolute;
 			}
 
 			#first {
 				background-color:#FFFFFF;
+				top: 10px;
+				left: 10px;
 			}
 
 			#second {
 				background-color:#FFFFFF;
+				top: 20px;
+				left: 150px;
 			}
 			
 			#fixed {
-
+				position: absolute;
+				bottom: 0px;
+				left: 0px;
 			}
 		</style>
 	</head>
 	<body>
 		<div id="outer">
+			<!--Change parent to relative-->
 			<div id="first">
+				<!--Change children to absolute-->
 				left: 10 px
 				<br>
 				top: 10 px
