@@ -206,5 +206,12 @@ I am well aware that this is rather inconvenient but it is at least guaranteed t
 ## virtual machine
 Using a virtual machine is always a viable option. I personally do this as well and developed this framework in a Debian environment that is running within a virtual machine. Note that there are quite a few free virtualizers to choose from and while I have a preferred one, I would like to take the liberty of not making any advertisements here. Therefore, I would recommend reading a few related online resources.
 
+## Getting Help
+Post a git issue containing:
++ what you've tried
++ what doesn't work
++ lines of code
++ url
+
 ## license
 Please refer to the appropriate file within this repository.
