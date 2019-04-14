@@ -18,8 +18,8 @@
             </td>
         </tr>
         <tr>
-            <td rowspan="3">gender</td>
-            <td rowspan="3">
+            <td>gender</td>
+            <td>
                 <input type="radio" name="gender">male</input>
                 <br>
                 <input type="radio" name="gender">female</input>
@@ -27,6 +27,27 @@
                 <input type="radio" name="gender" checked>other</input>
             </td>
         </tr>
-
+        <tr>
+            <td>major</td>
+            <td>
+                <select size="3" style="overflow: hidden">
+                    <option>math</option>
+                    <option selected>computer science</option>
+                    <option>physics</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                anything else
+                <br>
+                <textarea name="additional" rows="2" cols="24"></textarea>
+            </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="submit"></input>
+            </td>
+        </tr>
     </table>
 </body>
