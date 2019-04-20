@@ -12,7 +12,10 @@
 				// note that you will have to use a regexp for this task
 				// using strInput.split('quick').join('sly') is commonly suggested for doing string replacement
 				// this will not work this exercise though, as the matching is required to be case insensitive
-
+				var quickRegex = /quick/gi;
+				var lazyRegex = /lazy/gi;
+				strInput = strInput.replace(quickRegex, "sly");
+				strInput = strInput.replace(lazyRegex, "sharp");
 				return strInput;
 			};
 
