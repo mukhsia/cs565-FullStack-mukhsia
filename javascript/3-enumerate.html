@@ -14,7 +14,8 @@
 				{
 					outputStr = outputStr + dblInput[i].toFixed(3) + ", ";
 				}
-				outputStr = outputStr + dblInput[length-1].toFixed(3);
+				var lastElem = dblInput[length-1];
+				outputStr = outputStr + lastElem.toFixed(3);
 				return outputStr;
 			};
 
