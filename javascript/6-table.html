@@ -15,9 +15,9 @@
 				// should this function be called multiple times, the output div should only contain the table of the most recent call
 				strInput = "<table border=\"1\"><tr><td>" + strInput;
 				strInput = strInput.replace(/,/gi, "</td><td>");
-				var index = strInput.match();
 				var newlineRegex = /\n(?!$)/g;	//hits all newline match except the one that is followed with end of string
 				strInput = strInput.replace(newlineRegex, "</td></tr><tr><td>");
+				strInput = strInput.replace(/\n(?=$)/, ""); //Replace end of string newline with nothing if it exists
 				strInput = strInput + "</td></td></table>";
 				document.getElementById('output').innerHTML = strInput;
 			};
