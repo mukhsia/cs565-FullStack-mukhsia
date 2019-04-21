@@ -1,2 +1,2 @@
-obtained from the original input: ????????
-obtained from the modified input: ????????
+obtained from the original input: -2744675485
+obtained from the modified input: -229262392
