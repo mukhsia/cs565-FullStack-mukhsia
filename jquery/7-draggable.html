@@ -33,19 +33,20 @@
 
 			// attach a mouseup listener to jQuery(document) that resets the global is-being-dragged flag, such that the dragging will stop once you lift the mouse button
 			var isBeingDragged = false;
-			var position = {"left":0, "top":0};
+			var leftPosition = 0;
+			var topPosition = 0
 			$("#draggable")
 			.css("position", "absolute")
 			.on("mousedown", function(event) {
-				position.left = event.pageX;
-				position.top = event.pageY;
+				leftPosition = event.pageX - $(this).offset().left;
+				topPosition = event.pageY - $(this).offset().top;
 				isBeingDragged = true;
 			})
 			.on("mousemove", function(event) {
 				if(isBeingDragged === true)
 				{
-					$("#draggable").css("top", event.pageY - position.top);
-					$("#draggable").css("left", event.pageX - position.left);
+					$("#draggable").css("left", event.pageX - leftPosition);
+					$("#draggable").css("top", event.pageY - topPosition);
 				}
 			})
 			.on("mouseup", function(event) {
