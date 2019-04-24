@@ -5,7 +5,26 @@ var url = require('url'); // do not change this line
 var querystring = require('querystring'); // do not change this line
 
 // http://localhost:8080/ should return 'you have accessed the root' in plain text
+var server = http.createServer(function(req, res) {
+    if(req.url === "/") {
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
+    
+        res.write('you have accessed the root');
+    } else if (req.url.indexOf('/test/') === 0) {
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
+    
+        res.write('/text/');
+    }
+ 
+    res.end();
+});
 
+console.log('server listening on port 8080');
+server.listen(8080);
 // http://localhost:8080/test/hello should return 'you have accessed "hello" within test' in plain text
 
 // http://localhost:8080/test/world should return 'you have accessed "world" within test' in plain text
