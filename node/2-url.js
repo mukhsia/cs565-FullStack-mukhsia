@@ -12,22 +12,30 @@ var server = http.createServer(function(req, res) {
         });
     
         res.write('you have accessed the root');
-    } else if (req.url.indexOf('/test/') === 0) {
+    } 
+ 
+
+
+
+// http://localhost:8080/test/hello should return 'you have accessed "hello" within test' in plain text
+
+    else if (req.url.indexOf('/test/hello') === 0) {
         res.writeHead(200, {
             'Content-Type': 'text/plain'
         });
-    
-        res.write('/text/');
-    }
- 
-    res.end();
-});
 
-console.log('server listening on port 8080');
-server.listen(8080);
-// http://localhost:8080/test/hello should return 'you have accessed "hello" within test' in plain text
+        res.write('hello');
+    }
 
 // http://localhost:8080/test/world should return 'you have accessed "world" within test' in plain text
+    else if (req.url.indexOf('/test/world') === 0) {
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
+
+        res.write('world');
+    }
+
 
 // http://localhost:8080/attributes?hello=world&lorem=ipsum should return the following as html (row order might differ)
 //   <!DOCTYPE html>
@@ -39,7 +47,13 @@ server.listen(8080);
 //       </table>
 //     </body>
 //   </html>
+    else if (req.url.indexOf('/attributes') === 0) {
+        res.writeHead(200, {
+            'Content-Type': 'text/html'
+        });
 
+        // in-class tip: https://stackoverflow.com/questions/8590042/parsing-query-string-in-node-js
+    }
 // http://localhost:8080/attributes?first=1&second=2&third=3 should return the following as html (row order might differ)
 //   <!DOCTYPE html>
 //   <html>
@@ -51,3 +65,9 @@ server.listen(8080);
 //       </table>
 //     </body>
 //   </html>
+
+
+    res.end();
+});
+console.log('server listening on port 8080');
+server.listen(process.env.PORT || 8080);

@@ -21,6 +21,16 @@ var querystring = require('querystring'); // do not change this line
 //   
 //   res.end();
 
+var server = http.createServer(function(req, res) {
+    if(req.method === 'GET')
+    {
+
+    }
+    else if(req.method === 'POST')
+    {
+
+    }
+
 // http://localhost:8080/new should retrieve the post data, save the name / message (in a global variable) and return 'thank you for your message' in plain text
 
 // http://localhost:8080/list should return the stored messages (from the global variable) 'name: message' in plain text
@@ -34,3 +44,8 @@ var querystring = require('querystring'); // do not change this line
 // [the server restarts and looses all messages]
 
 // http://localhost:8080/list should return '' in plain text
+
+});
+
+console.log('server listening on port 8080');
+server.listen(process.env.PORT || 8080);
