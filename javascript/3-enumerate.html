@@ -23,6 +23,12 @@
 				}
 				return outputStr;
 			};
+			/*
+			Alternate way:
+			dblInput.forEach(function(entry) {
+				result.push(entry.toFixed(3));
+			})
+			*/
 
 			console.log(functionEnumerate([5.1, 7.4, 3.3, 6.8, 3.0])); // expected: '5.100, 7.400, 3.300, 6.800, 3.000'
 			console.log(functionEnumerate([23.357649, 26.239465, 2.62962])); // expected: '23.358, 26.239, 2.630'

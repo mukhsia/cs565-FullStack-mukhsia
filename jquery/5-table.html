@@ -29,6 +29,19 @@
 				return table;
 			};
 
+			//Alternative return $('table...)
+			/* .attr ({'border': '1'})
+			.each(function() {
+				for (var i = 0; i < intHeight; i++) {
+					($this)
+					.append($('<tr></tr>'))
+					. each(function() {
+						...
+					})
+				}
+			})
+			*/
+
 			jQuery('#output')
 				.append(functionCreate(3, 2))
 			;
