@@ -27,7 +27,6 @@ var server = http.createServer(function(req, res) {
         });
         var urlObj = url.parse(req.url);
         var pathTail = urlObj.pathname;
-        console.log(pathTail);
         pathTail = pathTail.replace("/test/", "");
         pathTail = "you have accessed \"" + pathTail + "\" within test";
         res.write(pathTail);
@@ -44,17 +43,7 @@ var server = http.createServer(function(req, res) {
 //       </table>
 //     </body>
 //   </html>
-    else if (req.url.indexOf('/attributes') === 0) {
-        var queryData = url.parse(req.url, true).query;
-        res.writeHead(200, {
-            'Content-Type': 'text/html'
-        });
 
-        if(queryData.name || queryData.lorem)
-        {
-            res.write("<!DOCTYPE html><html><body><table border=\"1\"><tr><td>hello</td><td>" + queryData.hello + "</td></tr><tr><td>lorem</td><td>" + queryData.lorem + "</td></tr></table></body></html>")
-        }
-        // in-class tip: https://stackoverflow.com/questions/8590042/parsing-query-string-in-node-js
 
 // http://localhost:8080/attributes?first=1&second=2&third=3 should return the following as html (row order might differ)
 //   <!DOCTYPE html>
@@ -67,17 +56,22 @@ var server = http.createServer(function(req, res) {
 //       </table>
 //     </body>
 //   </html>
-        else if(queryData.first || queryData.second || queryData.third)
+    else if (req.url.indexOf('/attributes') === 0) {
+        var queryData = url.parse(req.url, true).query;
+        res.writeHead(200, {
+            'Content-Type': 'text/html'
+        });
+
+        var outputStr = "<!DOCTYPE html><html><body><table border=\"1\">";
+        var objKeys = Object.keys(queryData);
+        var len = objKeys.length;
+        for(var i = 0; i < len; ++i)
         {
-            var outputStr = "<!DOCTYPE html><html><body><table border=\"1\"><tr><td>first</td><td>" 
-            + queryData.first
-            + "</td></tr><tr><td>second</td><td>"
-            + queryData.second
-            + "</td></tr><tr><td>third</td><td>"
-            + queryData.third
-            + "</td></tr></table></body></html>";
-            res.write(outputStr);
+            outputStr = outputStr + "<tr><td>" + objKeys[i] + "</td><td>" + queryData[objKeys[i]] + "</td></tr>";
         }
+        outputStr = outputStr + "</table></body></html>";
+        res.write(outputStr);
+        // in-class tip: https://stackoverflow.com/questions/8590042/parsing-query-string-in-node-js
     }
 
     res.end();
