@@ -19,22 +19,7 @@ var server = http.createServer(function(req, res) {
 
 // http://localhost:8080/test/hello should return 'you have accessed "hello" within test' in plain text
 
-    else if (req.url.indexOf('/test/hello') === 0) {
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-
-        res.write('hello');
-    }
-
 // http://localhost:8080/test/world should return 'you have accessed "world" within test' in plain text
-    else if (req.url.indexOf('/test/world') === 0) {
-        res.writeHead(200, {
-            'Content-Type': 'text/plain'
-        });
-
-        res.write('world');
-    }
 
     else if (req.url.indexOf('/test') === 0) {
         res.writeHead(200, {
@@ -44,7 +29,7 @@ var server = http.createServer(function(req, res) {
         var pathTail = urlObj.pathname;
         console.log(pathTail);
         pathTail = pathTail.replace("/test/", "");
-
+        pathTail = "you have accessed \"" + pathTail + "\" within test";
         res.write(pathTail);
     }
 
