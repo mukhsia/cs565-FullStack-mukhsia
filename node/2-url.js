@@ -36,6 +36,18 @@ var server = http.createServer(function(req, res) {
         res.write('world');
     }
 
+    else if (req.url.indexOf('/test') === 0) {
+        res.writeHead(200, {
+            'Content-Type': 'text/plain'
+        });
+        var urlObj = url.parse(req.url);
+        var pathTail = urlObj.pathname;
+        console.log(pathTail);
+        pathTail = pathTail.replace("/test/", "");
+
+        res.write(pathTail);
+    }
+
 
 // http://localhost:8080/attributes?hello=world&lorem=ipsum should return the following as html (row order might differ)
 //   <!DOCTYPE html>
