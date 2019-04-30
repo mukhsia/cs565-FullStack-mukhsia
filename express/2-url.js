@@ -3,6 +3,25 @@
 var express = require('express'); // do not change this line
 
 // http://localhost:8080/ should return 'you have accessed the root' in plain text
+const server = express();
+
+server.use(function(req, res, next) {
+    next();
+});
+
+//See example in slide...
+server.get('/', function(req, res) {
+    res.status(200);
+    res.set({
+        'Content-Type': 'text/plain'
+    });
+    res.write('you have accessed the root')
+    res.end();
+})
+
+server.
+
+server.listen(process.env.PORT || 8080);
 
 // http://localhost:8080/test/hello should return 'you have accessed "hello" within test' in plain text
 

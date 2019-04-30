@@ -9,5 +9,6 @@ var express = require('express'); // do not change this line
 // http://localhost:8080/cache should return 'cache this resource' in plain text and set the cache max age to a day
 
 // http://localhost:8080/cookie should return 'i gave you a cookie' in plain text and set 'hello=world' as a cookie
+// Check header.cookie is not empty
 
 // http://localhost:8080/check should return 'yes' / 'no' in plain text depending on whether the browser has the 'hello' cookie
