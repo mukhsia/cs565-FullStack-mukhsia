@@ -42,10 +42,10 @@ const server = http.createServer(function(req,res) {
         if(cookies['ident'] == null || Number(cookies['ident']) > cookieIdentCount)
         {
             cookieIdentCount = cookieIdentCount + 1;
-            var cookieval = 'ident=' + cookieIdentCount;
+            var cookistuff = 'ident=' + cookieIdentCount;
             res.writeHead(200, {
                 'Content-Type': 'text/plain',
-                'Set-Cookie': cookieval
+                'Set-Cookie': cookistuff
             });
             res.write('you must be new');
             lastUrl[cookies['ident']] = url.parse(req.url).pathname;
