@@ -48,10 +48,7 @@ const server = http.createServer(function(req,res) {
                 'Set-Cookie': cookieval
             });
             res.write('you must be new');
-            console.log(cookies['ident']);
-            console.log(lastUrl[cookies['ident']]);
             lastUrl[cookies['ident']] = url.parse(req.url).pathname;
-            console.log(lastUrl[cookies['ident']]);
             res.end();
         }
         else
@@ -59,8 +56,6 @@ const server = http.createServer(function(req,res) {
             res.writeHead(200, {
                 'Content-Type': 'text/plain',
             });
-            console.log(cookies['ident']);
-            console.log(lastUrl[cookies['ident']]);
             res.write('last time you visited ' + lastUrl[cookies['ident']]);
             lastUrl[cookies['ident']] = url.parse(req.url).pathname;
             res.end();
