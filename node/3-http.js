@@ -14,11 +14,13 @@ const server = http.createServer(function(req,res) {
         res.write('your princess is in another castle');
     }
 // http://localhost:8080/redirect should redirect the request to '/redirected' by using 302 as the status code
-    if (req.url.indexOf('/redirect') === 0) {
+    if (req.url === '/redirect') {
         res.writeHead(302, {
-            'Location': 'http://localhost:8080/redirected'
+            'Location': '/redirected'
         });
+        res.end();
     }
+
 
 // http://localhost:8080/cache should return 'cache this resource' in plain text and set the cache max age to a day
 if (req.url.indexOf('/cache') === 0) {
