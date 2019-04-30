@@ -24,7 +24,7 @@ const server = http.createServer(function(req,res) {
 
 // http://localhost:8080/cache should return 'cache this resource' in plain text and set the cache max age to a day
 if (req.url.indexOf('/cache') === 0) {
-    res.writeHead(302, {
+    res.writeHead(200, {
         'Content-Type': 'text/plain',
         'Cache-Control': 'max-age=86400000'
     });
