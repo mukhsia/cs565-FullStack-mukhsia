@@ -26,7 +26,7 @@ const server = http.createServer(function(req,res) {
 if (req.url.indexOf('/cache') === 0) {
     res.writeHead(200, {
         'Content-Type': 'text/plain',
-        'Cache-Control': 'max-age=86400000'
+        'Cache-Control': 'max-age=86400'
     });
     res.write('cache this resource');
 }
