@@ -10,6 +10,51 @@
 		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.22.0/moment.min.js"></script>
 	</head>
 	<body>
+		<table>
+			<tr>
+				<th>name</th>
+				<th>value</th>
+				<th>volume</th>
+			</tr>
+			{{ #objectStocks }}
+			<tr>
+				<th> {{ strName }} </th>
+				<th> {{ strName }} </th> <!-- toFixed doesn't work directly as we're in html se next th-->
+				<th> 
+					<script>
+						document.write({{ dblValue }}.toFixed(3)); 
+					</script> <!-- annoying way with javascript -->
+				</th>
+				
+				<th> {{ strName }} </th>
+			</tr>
+			{{ /objectStocks }}
+
+		</table>
+
+		<script type='text/javascript'>
+			{{ #objectStocks }}
+
+			var tr = $('<tr></tr>');
+
+			var volume = function calculateVolume()
+
+			tr.append('<td>' + {{ dblValue }}.toFixed(3) + '</td>');
+			tr.append('<td>' + {{ dblValue }}.toFixed(3) + '</td>');
+			tr.append('<td>' + volume + '</td>');
+
+			$('table').append(tr);
+
+			{{ /objectStocks }}
+		</script>
+		<!-- <script type="text/javascript">
+			var calculateColor = function(dblChange){
+				//output a different color based on whether dblChange is negative or positive
+				if(dblChange < 0){
+					return('background-color: rgb(188,103,114)')
+				}
+			}
+		-->
 		<!--
 			given a javascript object like:
 				{
