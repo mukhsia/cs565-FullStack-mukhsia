@@ -46,7 +46,7 @@ const server = http.createServer(function(req,res) {
                 'Set-Cookie': cookistuff
             });
             res.write('you must be new');
-            lastUrl[cookies['ident']] = JSON.stringify(req.url).replace(/\"/g, "");
+            lastUrl[cookies['ident']] = JSON.parse(JSON.stringify(req.url));
             res.end();
         }
         else
@@ -55,7 +55,7 @@ const server = http.createServer(function(req,res) {
                 'Content-Type': 'text/plain',
             });
             res.write('last time you visited ' + lastUrl[cookies['ident']]);
-            lastUrl[cookies['ident']] = JSON.stringify(req.url).replace(/\"/g, "");
+            lastUrl[cookies['ident']] = JSON.parse(JSON.stringify(req.url));
             res.end();
         }
     }
