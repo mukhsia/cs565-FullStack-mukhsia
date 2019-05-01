@@ -24,8 +24,6 @@ var http = require('http'); // do not change this line
 
 // http://localhost:8080/servus should return 'you must be new' in plain text and set an ident cookie
 
-var url = require("url");
-
 var cookieIdentCount = 0;
 var cookieIdents = {};
 var lastUrl = {};
@@ -48,7 +46,7 @@ const server = http.createServer(function(req,res) {
                 'Set-Cookie': cookistuff
             });
             res.write('you must be new');
-            lastUrl[cookies['ident']] = url.parse(req.url).pathname;
+            lastUrl[cookies['ident']] = JSON.stringify(req.url).replace(/\"/g, "");
             res.end();
         }
         else
@@ -57,7 +55,7 @@ const server = http.createServer(function(req,res) {
                 'Content-Type': 'text/plain',
             });
             res.write('last time you visited ' + lastUrl[cookies['ident']]);
-            lastUrl[cookies['ident']] = url.parse(req.url).pathname;
+            lastUrl[cookies['ident']] = JSON.stringify(req.url).replace(/\"/g, "");
             res.end();
         }
     }
