@@ -14,9 +14,46 @@ var server = http.createServer(function(req, res) {
 
 // http://localhost:8080/error should return 'error' in plain text
     // req.url doesn't work because we still have /, maybe remove 'localhost:8080'
-    dns.resolve(req.url, function(err, addresses) {
-      res.write(addresses[0]);
-    })
+    if(req.url.indexOf('/') === 0)
+    {
+      var ipAddresses = "";
+      res.writeHead(200, {
+        'Content-Type': 'text/plain'
+      });
+      var path = JSON.stringify(req.url);
+      path = path.substring(2, (path.length-1));
+      dns.resolve(path, function(err, addresses) {
+        if(err)
+        {
+            failed(); return;
+        }
+        var len = addresses.length;
+        for(var i = 0; i < len; i++)
+        {
+          if(ipAddresses.length === 0)
+          {
+            ipAddresses = ipAddresses + addresses[i];
+          }
+          else
+          {
+            ipAddresses = ipAddresses + "\n" + addresses[i];
+          }
+        }
+        success();
+      });
+    }
+
+    function success()
+    {
+      res.write(ipAddresses);
+      res.end();
+    }
+
+    function failed() 
+    {
+      res.write(path);
+      res.end();
+    }
 });
 
 console.log('server listening on port 8080');
