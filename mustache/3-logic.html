@@ -62,7 +62,7 @@
 
 			tr.append('<td>' + '{{ strName }}' + '</td>');
 			tr.append('<td>' + {{ dblValue }}.toFixed(2) + '</td>');
-			tr.append('<td style='+ calculateColor({{ dblChange }}.toFixed(2)) + '{{ dblChange }}' + '</td>');
+			tr.append('<td style='+ calculateColor({{ dblChange }}) + {{ dblChange }}.toFixed(2) + '</td>');
 			tr.append('<td>' + timeFormatter({{ intTime }}) + '</td>');
 			tr.append('<td>' + volumeFormatter({{ intVolume }}) + '</td>');
 
