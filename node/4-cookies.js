@@ -25,7 +25,6 @@ var http = require('http'); // do not change this line
 // http://localhost:8080/servus should return 'you must be new' in plain text and set an ident cookie
 
 var cookieIdentCount = 0;
-var cookieIdents = {};
 var lastUrl = {};
 
 const server = http.createServer(function(req,res) {
