@@ -51,7 +51,7 @@ var server = http.createServer(function(req, res) {
 
     function failed() 
     {
-      res.write(path);
+      res.write('error');
       res.end();
     }
 });
