@@ -63,8 +63,48 @@
 		<script type="text/javascript">
 			var objectSocket = io.connect('http://localhost:8080/'); // do not change this line
 
+
 			// when dragging an element around, send a 'drag' event to the server containing the strIdent of the element and the new intLeft as well as the new intTop position
 			// for example, when dragging the first div to the right, the 'drag' event might contain: { 'strIdent':'first', 'intLeft':100, 'intTop':10 }
+			var first = $('#first');
+			var second = $('#second');
+			var third = $('#third');
+			var fourth = $('#fourth');
+
+			first.on('drag', function(event) {
+				objectSocket.emit('drag', {
+					'strIdent': first.attr('id'),
+					'intLeft': event.pageX,
+					'intTop': event.pageY
+				});
+			});
+			second.on('drag', function(event) {
+				objectSocket.emit('drag', {
+					'strIdent': second.attr('id'),
+					'intLeft': second.css('left'),
+					'intTop': second.css('top')
+				});
+			});
+			third.on('drag', function(event) {
+				objectSocket.emit('drag', {
+					'strIdent': third.attr('id'),
+					'intLeft': third.css('left'),
+					'intTop': third.css('top')
+				});
+			});
+			fourth.on('drag', function(event) {
+				objectSocket.emit('drag', {
+					'strIdent': fourth.attr('id'),
+					'intLeft': fourth.css('left'),
+					'intTop': fourth.css('top')
+				});
+			});
+
+			objectSocket.on('drag', function(dragData) {
+				console.log(dragData.strIdent);
+				var strIdent = "#" + dragData.strIdent;
+				$(strIdent).css('left', dragData.intLeft).css('top', dragData.intTop);
+			});
 
 			// when receiving a 'drag' event from the server, use the contained strIdent and the intLeft as well as intTop position to update the associated element
 			// for example, you might receive the following in the 'drag' event when the last div has been dragged to the left: { 'strIdent':'fourth', 'intLeft':20, 'intTop':120 }
