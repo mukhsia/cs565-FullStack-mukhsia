@@ -74,36 +74,37 @@
 			first.on('drag', function(event) {
 				objectSocket.emit('drag', {
 					'strIdent': first.attr('id'),
-					'intLeft': event.pageX,
-					'intTop': event.pageY
+					'intLeft': event.pageX + event.pageX - $(this).offset().left,
+					'intTop': event.pageY + event.pageY - $(this).offset().top
 				});
 			});
 			second.on('drag', function(event) {
 				objectSocket.emit('drag', {
 					'strIdent': second.attr('id'),
-					'intLeft': second.css('left'),
-					'intTop': second.css('top')
+					'intLeft': event.pageX + event.pageX - $(this).offset().left,
+					'intTop': event.pageY + event.pageY - $(this).offset().top
 				});
 			});
 			third.on('drag', function(event) {
 				objectSocket.emit('drag', {
 					'strIdent': third.attr('id'),
-					'intLeft': third.css('left'),
-					'intTop': third.css('top')
+					'intLeft': event.pageX + event.pageX - $(this).offset().left,
+					'intTop': event.pageY + event.pageY - $(this).offset().top
 				});
 			});
 			fourth.on('drag', function(event) {
 				objectSocket.emit('drag', {
 					'strIdent': fourth.attr('id'),
-					'intLeft': fourth.css('left'),
-					'intTop': fourth.css('top')
+					'intLeft': event.pageX,
+					'intTop': event.pageY
 				});
 			});
 
 			objectSocket.on('drag', function(dragData) {
 				console.log(dragData.strIdent);
 				var strIdent = "#" + dragData.strIdent;
-				$(strIdent).css('left', dragData.intLeft).css('top', dragData.intTop);
+				var div = $(strIdent)
+				div.css('left', dragData.intLeft).css('top', dragData.intTop);
 			});
 
 			// when receiving a 'drag' event from the server, use the contained strIdent and the intLeft as well as intTop position to update the associated element

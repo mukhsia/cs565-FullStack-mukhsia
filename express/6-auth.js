@@ -13,3 +13,51 @@ var strategy = require('passport-http'); // do not change this line
 // http://localhost:8080/world should return 'only accessible when logged in' in plain text if user the user is authenticate, otherwise will prompt for the username and password
 
 // http://localhost:8080/test should return 'only accessible when logged in' in plain text if user the user is authenticate, otherwise will prompt for the username and password
+
+const server = express();
+
+server.use(passport.initialize());
+
+passport.use(new basicStrategy(
+    function(username, password, done) {
+        if(username !== 'test')
+            return done(null, false);
+        if(password !== 'logmein')
+            return done(null, false);
+
+        return done(null, username, password);
+    }
+));
+
+server.use(function(req, res, next) {
+    next();
+});
+
+server.get("/hello", function(req, res) {
+    res.status(200);
+    res.set({
+        'Content-Type': 'text/plain'
+    });
+    res.write('accessible to everyone');
+    res.end();
+});
+
+server.get("/world", passport.authenticate('basicStrategy', {session: false}),
+function(req, res) {
+    res.status(200);
+    res.set({
+        'Content-Type': 'text/plain'
+    });
+    res.write('only accessible when logged in');
+    res.end();
+});
+
+server.get("/test", passport.authenticate('basicStrategy', {session: false}),
+function(req, res) {
+    res.status(200);
+    res.set({
+        'Content-Type': 'text/plain'
+    });
+    res.write('only accessible when logged in');
+    res.end();
+});
