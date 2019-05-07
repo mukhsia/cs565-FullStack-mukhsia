@@ -68,6 +68,9 @@ server.get('/attributes', function(req, res) {
     res.end();
 })
 
+server.get('/*', function(req, res) {
+    res.end();
+})
 
 server.listen(process.env.PORT || 8080);
 
