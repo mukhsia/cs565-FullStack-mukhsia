@@ -19,13 +19,18 @@ server.get('/', function(req, res) {
     res.end();
 })
 
-server.
-
-server.listen(process.env.PORT || 8080);
 
 // http://localhost:8080/test/hello should return 'you have accessed "hello" within test' in plain text
 
 // http://localhost:8080/test/world should return 'you have accessed "world" within test' in plain text
+server.get('/test/:stuff', function(req, res) {
+    res.status(200);
+    res.set({
+        'Content-Type': 'text/plain'
+    });
+    res.write("you have accessed \"" + req.params["stuff"] + "\" within test")
+    res.end();
+})
 
 // http://localhost:8080/attributes?hello=world&lorem=ipsum should return the following as html (row order might differ)
 //   <!DOCTYPE html>
@@ -49,3 +54,22 @@ server.listen(process.env.PORT || 8080);
 //       </table>
 //     </body>
 //   </html>
+
+server.get('/attributes', function(req, res) {
+    res.status(200);
+    res.set({
+        'Content-Type': 'text/html'
+    });
+    res.write("<!DOCTYPE html><html><body><table border=\"1\">");
+    for(let keys in req.query) {   
+        res.write("<tr><td>" + keys + "</td><td>" + req.query[keys] + "</td></tr>");
+    }
+    res.write("</table></body></html>");
+    res.end();
+})
+
+
+server.listen(process.env.PORT || 8080);
+
+
+

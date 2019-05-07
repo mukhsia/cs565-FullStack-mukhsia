@@ -8,7 +8,10 @@ const server = express();
 
 server.get('/lorem', function(req, res) {
     res.status(200);
-    res.write('<!DOCTYPE html><html><body>lorem ipsum</body></html>')
+    res.set({
+        'Content-Type': 'text/html'
+    });
+    res.write('<!DOCTYPE html><html><body>lorem ipsum</body></html>');
     res.end();
 })
 
