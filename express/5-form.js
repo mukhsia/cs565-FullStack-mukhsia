@@ -30,7 +30,9 @@ server.use(function(req, res, next) {
     next();
 });
 server.use(parser.json());
-server.use(parser.urlencoded());
+server.use(parser.urlencoded({
+    extended: true
+}));
 
 // http://localhost:8080/form should return the form as shown above
 server.get('/form', function(req, res) {
