@@ -18,7 +18,7 @@ const server = express();
 
 server.use(passport.initialize());
 
-passport.use(new basicStrategy(
+passport.use(new strategy.BasicStrategy(
     function(username, password, done) {
         if(username !== 'test')
             return done(null, false);
@@ -42,7 +42,7 @@ server.get("/hello", function(req, res) {
     res.end();
 });
 
-server.get("/world", passport.authenticate('basicStrategy', {session: false}),
+server.get("/world", passport.authenticate('basic', {session: false}),
 function(req, res) {
     res.status(200);
     res.set({
@@ -52,7 +52,7 @@ function(req, res) {
     res.end();
 });
 
-server.get("/test", passport.authenticate('basicStrategy', {session: false}),
+server.get("/test", passport.authenticate('basic', {session: false}),
 function(req, res) {
     res.status(200);
     res.set({
@@ -61,3 +61,6 @@ function(req, res) {
     res.write('only accessible when logged in');
     res.end();
 });
+
+
+server.listen(process.env.PORT || 8080);
