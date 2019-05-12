@@ -23,7 +23,7 @@
 			$('#submit').click(function() {
 					$.ajax({
 						'type': 'GET',
-						'url': 'http://cs465.oregonctf.org/playground/ajax/lorem.txt?strInput='+encodeURI($('#input').value),
+						'url': 'http://cs465.oregonctf.org/playground/ajax/lorem.txt?strInput='+encodeURI($('#input').val()),
 						'dataType': 'text',
 						'success': function(data) {
 							$('#output').text(data);
