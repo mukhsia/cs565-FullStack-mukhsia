@@ -73,7 +73,7 @@ server.post('/new', function(req, res) {
     res.set({
         'Content-Type': 'text/plain',
     });
-    res.write("thank you for the message");
+    res.write("thank you for your message");
     res.end();
 });
 
