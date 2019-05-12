@@ -56,7 +56,7 @@ server.get('/*', function(req, res) {
         res.write("your history:")
         for(let path in paths)
         {
-            res.write("\n" + paths[path]);
+            res.write("\n  " + paths[path]);
         }
         paths.push(req.path);
     }
