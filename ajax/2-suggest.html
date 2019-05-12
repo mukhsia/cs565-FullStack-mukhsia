@@ -22,7 +22,8 @@
 					'url': 'http://cs465.oregonctf.org/playground/ajax/suggest.json?strFile='+$('#input').val(),
 					'dataType': 'json',
 					'success': function(data) {
-						$('#output').text('something');
+						var strFiles = data.strFiles;
+						$('#output').text(strFiles.join('\n'));
 					}
 				});
 			});
