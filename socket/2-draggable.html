@@ -70,35 +70,84 @@
 			var second = $('#second');
 			var third = $('#third');
 			var fourth = $('#fourth');
+			var isBeingDragged = false;
+			var leftPosition = 0;
+			var topPosition = 0;
+			first.on('mousedown', function(event) {
+				isBeingDragged = true;
+				leftPosition = event.pageX - $(this).offset().left;
+				topPosition = event.pageY - $(this).offset().top;
+			})
+			.on('mousemove', function(event) {
+				if(isBeingDragged === true)
+				{
+					objectSocket.emit('drag', {
+						'strIdent': first.attr('id'),
+						'intLeft': event.pageX - leftPosition,
+						'intTop': event.pageY - topPosition
+					});
+				}
+			})
+			.on('mouseup', function(event) {
+				isBeingDragged = false
+			});
+			
+			second.on('mousedown', function(event) {
+				isBeingDragged = true;
+				leftPosition = event.pageX - $(this).offset().left;
+				topPosition = event.pageY - $(this).offset().top;
+			})
+			.on('mousemove', function(event) {
+				if(isBeingDragged === true)
+				{
+					objectSocket.emit('drag', {
+						'strIdent': second.attr('id'),
+						'intLeft': event.pageX - leftPosition,
+						'intTop': event.pageY - topPosition
+					});
+				}
+			})
+			.on('mouseup', function(event) {
+				isBeingDragged = false
+			});
 
-			first.on('drag', function(event) {
-				objectSocket.emit('drag', {
-					'strIdent': first.attr('id'),
-					'intLeft': event.pageX + event.pageX - $(this).offset().left,
-					'intTop': event.pageY + event.pageY - $(this).offset().top
-				});
+			third.on('mousedown', function(event) {
+				isBeingDragged = true;
+				leftPosition = event.pageX - $(this).offset().left;
+				topPosition = event.pageY - $(this).offset().top;
+			})
+			.on('mousemove', function(event) {
+				if(isBeingDragged === true)
+				{
+					objectSocket.emit('drag', {
+						'strIdent': third.attr('id'),
+						'intLeft': event.pageX - leftPosition,
+						'intTop': event.pageY - topPosition
+					});
+				}
+			})
+			.on('mouseup', function(event) {
+				isBeingDragged = false
 			});
-			second.on('drag', function(event) {
-				objectSocket.emit('drag', {
-					'strIdent': second.attr('id'),
-					'intLeft': event.pageX + event.pageX - $(this).offset().left,
-					'intTop': event.pageY + event.pageY - $(this).offset().top
-				});
-			});
-			third.on('drag', function(event) {
-				objectSocket.emit('drag', {
-					'strIdent': third.attr('id'),
-					'intLeft': event.pageX + event.pageX - $(this).offset().left,
-					'intTop': event.pageY + event.pageY - $(this).offset().top
-				});
-			});
-			fourth.on('drag', function(event) {
-				objectSocket.emit('drag', {
-					'strIdent': fourth.attr('id'),
-					'intLeft': event.pageX,
-					'intTop': event.pageY
-				});
-			});
+
+			fourth.on('mousedown', function(event) {
+				isBeingDragged = true;
+				leftPosition = event.pageX - $(this).offset().left;
+				topPosition = event.pageY - $(this).offset().top;
+			})
+			.on('mousemove', function(event) {
+				if(isBeingDragged === true)
+				{
+					objectSocket.emit('drag', {
+						'strIdent': fourth.attr('id'),
+						'intLeft': event.pageX - leftPosition,
+						'intTop': event.pageY - topPosition
+					});
+				}
+			})
+			.on('mouseup', function(event) {
+				isBeingDragged = false
+			})
 
 			objectSocket.on('drag', function(dragData) {
 				console.log(dragData.strIdent);
