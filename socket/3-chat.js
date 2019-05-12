@@ -15,7 +15,7 @@ io.on('connection', function(objectSocket) {
 	// send everyone the 'message' event, containing a message that a new client connected - example: { 'strFrom':'server', 'strTo':'everyone', 'strMessage':'9T1P4pUQ... connected' }
 	var clients = Object.keys(io.sockets.sockets);
 	var msgSender = objectSocket.id;
-	objectSocket.emit('clients', {'strClients':clients});
+	io.emit('clients', {'strClients':clients});
 	io.emit('message', { 'strFrom':'server', 'strTo':'everyone', 'strMessage': msgSender+'... connected' });
 
 	objectSocket.on('message', function(objectData) {
@@ -36,7 +36,7 @@ io.on('connection', function(objectSocket) {
 
 	objectSocket.on('disconnect', function() {
 		// send everyone the 'clients' event, containing an array of the connected clients - example: { 'strClients':['GxwYr9Uz...'] }
-		objectSocket.emit('clients', {'strClients':clients});
+		io.emit('clients', {'strClients':clients});
 		// send everyone the 'message' event, containing a message that an existing client disconnected - example: { 'strFrom':'server', 'strTo':'everyone', 'strMessage':'9T1P4pUQ... disconnected' }
 		io.emit('message', { 'strFrom':'server', 'strTo':'everyone', 'strMessage': objectSocket.id+'... disconnected' });
 	});
